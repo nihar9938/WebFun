@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Fun</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/theme.css' %}">
+</head>
+<body>
+    <div class="form-body">
+        <div class="row">
+            <div class="img-holder">
+                <div class="bg"></div>
+                <div class="info-holder">
+                    <h3>Hey Buddy, Lets Check your Image.</h3>
+                    <img id = "outImage" src="{% static 'images/pic.png' %}" alt="">
+                </div>
+            </div>
+            <div class="form-holder">
+                <div class="form-content" style="background-color: #C493FF;">
+                    <div class="form-items">
+                        <div class="website-logo-inside">
+                            <a href="">
+                                <div class="logo">
+                                    <p style="color: white; font-size: 30px;"><b>Web Fun</b></p>
+                                    <p style="color: white; font-size: 20px; margin-top: -27px;">Play Some Interesting With your Images</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="page-links">
+                            <a href=" " class="active">Play with Images</a>
+                        </div>
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <select class="form-control" name="service">
+                                <option>Choose Your Services</option>
+                                <option>Object Detection</option>
+                                <option>Cel.. Det...</option>
+                            </select><br>
+
+                            <input class="form-control" id = "inputImage" type="file" onchange="ChangeImage(event)" name="image" required>
+                            <div class="form-button">
+                                <button id="submit" type="submit" class="ibtn">Start</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    function ChangeImage(e) {
+        var image = document.getElementById("outImage");
+        image.src = URL.createObjectURL(e.target.files[0]);
+    }
+</script>
+</body>
+</html>
